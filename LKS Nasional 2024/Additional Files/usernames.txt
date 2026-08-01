@@ -1,0 +1,7 @@
+user,password
+abdul,password123
+ahmad,password345
+salma,passwerd111
+ihsan,asdfghjkl
+bagas,qwertyuiop
+saepul,11223344
