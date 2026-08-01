@@ -1,2 +1,2 @@
-# LKS-ITNSA---Repo
+# LKS-ITNSA-Repo
 LKS ITNSA Documentation
