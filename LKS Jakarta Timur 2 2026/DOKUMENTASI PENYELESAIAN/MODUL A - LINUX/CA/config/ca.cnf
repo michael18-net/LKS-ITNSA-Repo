@@ -1,0 +1,16 @@
+[ req ]
+distinguished_name = req_dn
+x509_extensions = v3_ca
+prompt = no
+
+[ req_dn ]
+C = ID
+ST = Jakarta
+O = ITNSA
+CN = LKSJT2-CA
+
+[ v3_ca ]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints = critical, CA:TRUE
+keyUsage = critical, keyCertSign, cRLSign

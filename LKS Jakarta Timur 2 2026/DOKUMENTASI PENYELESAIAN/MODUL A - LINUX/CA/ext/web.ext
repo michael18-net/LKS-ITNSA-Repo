@@ -1,0 +1,8 @@
+basicConstraints = CA:FALSE
+keyUsage = critical, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.1 = www.lksjakarta.id
+DNS.2 = www.int.lksjakarta.id
+
