@@ -1,0 +1,13 @@
+[Unit]
+Description=OpenVPN Client
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/openvpn --config /etc/openvpn/client/lksjakarta.conf
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
