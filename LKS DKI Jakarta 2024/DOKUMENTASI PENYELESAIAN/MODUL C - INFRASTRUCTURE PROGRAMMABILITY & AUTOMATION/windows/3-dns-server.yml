@@ -1,0 +1,37 @@
+---
+
+- name: Playbook 3 Windows
+  hosts: Windows
+
+  tasks:
+    - name: Install DNS Server
+      win_feature:
+        name: DNS
+        state: present
+        include_management_tools: yes
+
+    - name: Create DNS zone
+      ansible.windows.win_dns_zone:
+        name: "windows.com"
+        type: "primary"
+
+    - name: Create A record for windows.com
+      ansible.windows.win_dns_record:
+        zone: "windows.com"
+        name: "@"
+        type: "A"
+        value: 10.0.10.20
+
+    - name: Create A record for hostname
+      ansible.windows.win_dns_record:
+        zone: "windows.com"
+        name: "{{ hostname }}"
+        type: "A"
+        value: "{{ ansible_host }}"
+
+    - name: Create A record for www.windows.com
+      ansible.windows.win_dns_record:
+        zone: "windows.com"
+        name: "www"
+        type: "A"
+        value: 10.0.10.20

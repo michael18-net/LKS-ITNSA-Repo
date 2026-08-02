@@ -1,0 +1,34 @@
+---
+
+- name: Playbook 5 Windows
+  hosts: Windows
+
+  tasks:
+    - name: Install web server
+      win_feature:
+        name: Web-Server
+        state: present
+        include_management_tools: yes
+
+    - name: Create web root directory
+      win_file:
+        path: C:/inetpub/www
+        state: directory
+
+    - name: Create web index.html
+      template:
+        src: templates/index.html.j2
+        dest: C:/inetpub/www/index.html
+
+    - name: Stop default site
+      win_iis_website:
+        name: "Default Web Site"
+        state: stopped
+
+    - name: Create virtual host
+      win_iis_website:
+        name: "www site"
+        port: 80
+        physical_path: "C:/inetpub/www"
+        state: started 
+        hostname: "www.windows.com"

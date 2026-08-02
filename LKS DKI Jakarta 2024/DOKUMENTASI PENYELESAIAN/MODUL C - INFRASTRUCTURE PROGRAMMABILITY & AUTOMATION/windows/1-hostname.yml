@@ -1,0 +1,14 @@
+---
+
+- name: Playbook 1 Windows
+  hosts: Windows
+
+  tasks:
+    - name: Set hostname
+      win_hostname:
+        name: "{{ hostname }}"
+      notify: reboot server
+
+  handlers:
+    - name: reboot server
+      win_reboot:
