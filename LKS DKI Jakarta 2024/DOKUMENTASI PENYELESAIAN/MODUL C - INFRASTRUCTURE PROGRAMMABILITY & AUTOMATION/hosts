@@ -1,0 +1,29 @@
+[Linux]
+LIN1 ansible_host=10.0.10.11 hostname=LIN1 webport=8081 webcolor=red
+LIN2 ansible_host=10.0.10.12 hostname=LIN2 webport=8082 webcolor=blue
+
+[Linux:vars]
+ansible_user=user
+ansible_password=P@ssw0rd
+ansible_become=yes
+ansible_become_method=su
+ansible_become_password=P@ssw0rd
+
+[dns]
+LIN1
+LIN2
+
+[web]
+LIN1
+LIN2
+
+[Windows]
+WIN ansible_host=10.0.10.20 hostname=WIN
+
+[Windows:vars]
+ansible_user=Administrator
+ansible_password=P@ssw0rd
+ansible_connection=winrm
+ansible_winrm_transport=ntlm
+ansible_port=5985
+ansible_winrm_server_cert_validation=ignore
