@@ -1,0 +1,45 @@
+---
+
+- name: Playbook Web Int
+  hosts: web-02
+  become: yes
+  tasks:
+
+    - name: install common packages
+      apt:
+        name:
+          - htop
+          - curl
+          - jq
+          - nginx
+        state: present
+
+    - name: create web root directory
+      file:
+        path: /var/www/custom-web
+        state: directory
+
+    - name: create index.html
+      copy:
+        content: "<h1>This is web internal</h1>"
+        dest: /var/www/custom-web/index.html
+      notify: restart nginx
+
+    - name: create vhost
+      template:
+        src: templates/custom-web.conf.j2
+        dest: /etc/nginx/sites-available/custom-web.conf
+      notify: restart nginx
+
+    - name: enable site
+      file:
+        src: /etc/nginx/sites-available/custom-web.conf
+        dest: /etc/nginx/sites-enabled/custom-web.conf
+        state: link
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
