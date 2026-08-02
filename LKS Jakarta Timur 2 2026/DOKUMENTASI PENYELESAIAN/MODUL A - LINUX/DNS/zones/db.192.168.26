@@ -1,0 +1,17 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	int.lksjakarta.id. root.lksjakarta.id. (
+			     16		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	int.lksjakarta.id.
+1	IN	PTR	fw.lksjakarta.id.
+10	IN	PTR	mail.lksjakarta.id.
+123	IN	PTR	vip.lksjakarta.id.
+100	IN	PTR	web-01.lksjakarta.id.
+200	IN	PTR	web-02.lksjakarta.id.
