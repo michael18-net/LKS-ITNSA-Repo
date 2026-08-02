@@ -1,0 +1,29 @@
+---
+
+- name: Playbook 2 Linux
+  hosts: dns
+  become: yes
+
+  tasks:
+    - name: Install bind9
+      apt:
+        name: bind9
+        state: present
+
+    - name: Configure zone file
+      template:
+        src: templates/named.conf.local.j2
+        dest: /etc/bind/named.conf.local
+      notify: restart bind9
+
+    - name: Create record
+      template:
+        src: templates/db.linux.com.j2
+        dest: /etc/bind/db.linux.com
+      notify: restart bind9
+
+  handlers:
+    - name: restart bind9
+      service:
+        name: bind9
+        state: restarted

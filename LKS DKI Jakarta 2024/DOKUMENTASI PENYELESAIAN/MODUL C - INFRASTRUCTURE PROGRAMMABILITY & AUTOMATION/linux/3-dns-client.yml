@@ -1,0 +1,13 @@
+---
+
+- name: Playbook 3 Linux
+  hosts: Linux
+  become: yes
+
+  tasks:
+    - name: Set nameservers to /etc/resolv.conf
+      copy:
+        content: |
+          nameserver 10.0.10.11
+          nameserver 10.0.10.20
+        dest: /etc/resolv.conf

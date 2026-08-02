@@ -1,0 +1,16 @@
+---
+
+- name: Playbook 5 Linux
+  hosts: Linux
+  become: yes
+
+  tasks:
+    - name: Create multiple users
+      user:
+        name: "user-{{ '%05d' | format(item) }}"
+        password: "{{ ('user-' ~ ('%05d' | format(item))) | password_hash('sha512') }}" 
+        state: present
+        create_home: yes
+        shell: /bin/bash
+        update_password: on_create
+      loop: "{{ range(1,100000) | list }}"

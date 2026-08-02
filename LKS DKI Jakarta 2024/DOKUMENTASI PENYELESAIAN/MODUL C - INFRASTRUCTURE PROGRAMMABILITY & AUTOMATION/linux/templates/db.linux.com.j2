@@ -1,0 +1,17 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	ns.linux.com. root.linux.com. (
+			      5		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	ns.linux.com.
+ns	IN	A	10.0.10.11
+linux.com.	IN	A	10.0.10.11
+{% for host in groups['Linux'] %}
+{{ hostvars[host]['hostname'] }}.linux.com. IN A	{{ hostvars[host]['ansible_host'] }}
+{% endfor %}

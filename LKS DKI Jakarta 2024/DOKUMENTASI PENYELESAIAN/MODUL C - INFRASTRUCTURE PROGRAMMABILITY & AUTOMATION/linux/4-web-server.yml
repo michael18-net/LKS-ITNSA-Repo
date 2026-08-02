@@ -1,0 +1,41 @@
+---
+
+- name: Playbook 4 Linux
+  hosts: web
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Create index.html
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+      notify: restart nginx
+
+    - name: remove default virtual host
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+
+    - name: Create virtual host
+      template:
+        src: templates/web.conf.j2
+        dest: /etc/nginx/sites-available/web.conf
+      notify: restart nginx
+
+    - name: link virtual host
+      file:
+        src: /etc/nginx/sites-available/web.conf
+        dest: /etc/nginx/sites-enabled/web.conf
+        state: link
+      notify: restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
