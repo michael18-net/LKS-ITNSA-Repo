@@ -1,0 +1,19 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	ns1.utara.site. root.utara.site. (
+			     10		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	ns1.utara.site.
+@	IN	NS	ns2.utara.site.
+11	IN	PTR	ns1.utara.site.
+12	IN	PTR	ns2.utara.site.
+11	IN	PTR	LINSRV1.utara.site.
+12	IN	PTR	LINSRV2.utara.site.
+11	IN	PTR	mail.utara.site.
+12	IN	PTR	file.utara.site.

@@ -1,0 +1,21 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	ns1.utara.site. root.utara.site. (
+			     10		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	ns1.utara.site.
+@	IN	NS	ns2.utara.site.
+ns1	IN	A	192.168.10.11
+ns2	IN	A	192.168.10.12
+LINSRV1	IN	A	192.168.10.11
+LINSRV2	IN	A	192.168.10.12
+www	IN	A	103.10.70.110
+mail	IN	A	192.168.10.11
+file	IN	A	192.168.10.12
+@	IN	MX	10 mail.utara.site.
