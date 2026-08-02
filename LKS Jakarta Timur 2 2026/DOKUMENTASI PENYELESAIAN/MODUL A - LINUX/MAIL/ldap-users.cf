@@ -1,0 +1,4 @@
+server_host = ldap://10.10.10.10
+search_base = ou=mail,dc=lksjakarta,dc=id
+query_filter = (mail=%s)
+result_attribute = mail
