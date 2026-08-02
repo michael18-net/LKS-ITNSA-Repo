@@ -1,0 +1,26 @@
+dn: uid=jago,ou=mail,dc=lksjakarta,dc=id
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Bang Jago
+sn: Bang Jago
+uid: jago
+uidNumber: 11001
+gidNumber: 11001
+homeDirectory: /home/jago
+loginShell: /bin/bash
+mail: jago@lksjakarta.id
+userPassword: {SSHA}ytDAvMCvfz7fTgRBbvVEqKAy51/zTMTL
+
+dn: uid=jago,ou=vpn,dc=lksjakarta,dc=id
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: Bang Jago
+sn: Bang Jago
+uid: jago
+uidNumber: 11001
+gidNumber: 11001
+homeDirectory: /home/jago
+loginShell: /bin/bash
+userPassword: {SSHA}ytDAvMCvfz7fTgRBbvVEqKAy51/zTMTL

@@ -1,0 +1,39 @@
+dn: uid=vpn1,ou=vpn,dc=lksjakarta,dc=id
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: vpn1
+sn: vpn1
+uid: vpn1
+uidNumber: 13001
+gidNumber: 13001
+homeDirectory: /home/vpn1
+loginshell: /bin/bash
+userPassword: {SSHA}ytDAvMCvfz7fTgRBbvVEqKAy51/zTMTL
+
+dn: uid=vpn2,ou=vpn,dc=lksjakarta,dc=id
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: vpn2
+sn: vpn2
+uid: vpn2
+uidNumber: 13002
+gidNumber: 13002
+homeDirectory: /home/vpn2
+loginshell: /bin/bash
+userPassword: {SSHA}ytDAvMCvfz7fTgRBbvVEqKAy51/zTMTL
+
+dn: uid=vpn3,ou=vpn,dc=lksjakarta,dc=id
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: vpn3
+sn: vpn3
+uid: vpn3
+uidNumber: 13003
+gidNumber: 13003
+homeDirectory: /home/vpn3
+loginshell: /bin/bash
+userPassword: {SSHA}ytDAvMCvfz7fTgRBbvVEqKAy51/zTMTL
+

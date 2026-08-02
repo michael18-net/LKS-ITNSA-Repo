@@ -1,0 +1,7 @@
+dn: ou=mail,dc=lksjakarta,dc=id
+objectClass: organizationalUnit
+ou: mail
+
+dn: ou=vpn,dc=lksjakarta,dc=id
+objectClass: organizationalUnit
+ou: vpn
