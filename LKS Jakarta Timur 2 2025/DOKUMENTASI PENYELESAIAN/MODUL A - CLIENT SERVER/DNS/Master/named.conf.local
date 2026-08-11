@@ -1,0 +1,25 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "utara.site" {
+	type master;
+	file "/etc/bind/db.utara.site";
+	allow-transfer { 192.168.10.12; };
+};
+
+zone "10.168.192.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.192.168.10";
+	allow-transfer { 192.168.10.12; };
+};
+
+zone "selatan.site" {
+	type forward;
+	forward only;
+	forwarders { 103.10.70.120; };
+};

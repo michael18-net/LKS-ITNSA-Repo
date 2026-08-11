@@ -1,0 +1,71 @@
+upstream www_backend {
+	server 192.168.10.11:80;
+	server 192.168.10.12:80;
+}
+
+upstream mobile_backend {
+	server 192.168.10.12:80;
+}
+
+server {
+	listen 80;
+	listen [::]:80;
+	server_name www.utara.site m.utara.site;
+	return 301 https://$host$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+
+	server_name www.utara.site;
+
+	ssl_certificate /etc/ssl/certs/web.pem;
+	ssl_certificate_key /etc/ssl/private/web.key;
+
+	ssl_protocols TLSv1.2 TLSv1.3;
+
+	location / {
+		if ($http_user_agent ~* "Mobile") {
+			return 302 https://m.utara.site$request_uri;
+		}
+
+		proxy_pass http://www_backend;
+
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+
+		try_files $uri $uri/ =404;
+	}
+
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+
+	server_name m.utara.site;
+
+	ssl_certificate /etc/ssl/certs/web.pem;
+	ssl_certificate_key /etc/ssl/private/web.key;
+
+	ssl_protocols TLSv1.2 TLSv1.3;
+
+	location / {
+		if ($http_user_agent !~* "Mobile") {
+			return 302 https://www.utara.site$request_uri;
+		}
+
+		proxy_pass http://mobile_backend;
+
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+
+		try_files $uri $uri/ =404;
+	}
+
+}
