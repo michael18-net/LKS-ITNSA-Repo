@@ -1,0 +1,25 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "barat.id" {
+	type master;
+	file "/var/lib/bind/db.barat.id";
+	allow-transfer { 10.10.10.20; };
+};
+
+zone "10.10.10.in-addr.arpa" {
+	type master;
+	file "/var/lib/bind/db.10.10.10";
+	allow-transfer { 10.10.10.20; };
+};
+
+zone "tengah.id" {
+	type forward;
+	forward only;
+	forwarders { 32.12.10.120; };
+};
